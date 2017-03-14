@@ -31,7 +31,7 @@ def show_clock():
         try:
             current_time = datetime.now()
             clear()
-            print (current_time.hour, ":", current_time.minute, ":", current_time.second)
+            print ("{} : {} : {}".format(current_time.hour, current_time.minute, current_time.second))
             print("Alarm set up in {} : {} : 0".format(hour, minute))
 
             if current_time.hour == hour and current_time.minute == minute and current_time.second == 0:
