@@ -30,7 +30,18 @@ def play_song(path="Traumer - Hoodlum DESOLAT038.mp3"):
     mixer.music.load(path)
     mixer.music.play()
 
+# attemp to increase volume
 
+#def increase_volume():
+#    volume = 0.1
+#    mixer.set_volume(volume)
+#    while not volume:
+#        volume += 0.1
+#        sleep(0.5)
+#        mixer.set_volume(volume)
+
+def pause():
+    mixer.pause()
 
 def show_clock():
     # we need update our time no
