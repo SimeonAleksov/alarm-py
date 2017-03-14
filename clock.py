@@ -1,7 +1,7 @@
 # clock.py
 
 from time import sleep
-from os import system
+from os import system, listdir, getcwd
 from datetime import datetime
 from pygame import mixer
 
@@ -14,6 +14,13 @@ alarm = [int(time) for time in user_input.split() if time.isdigit()]
 
 hour, minute = alarm[0], alarm[1]
 
+def choose_song():
+    current_dir = getcwd()
+    for file in listdir(current_dir):
+        if file.endswith(".mp3"):
+            print(file)
+    choice = input("Choose song for the alarm: ")
+    return choice
 
  # loading a song to play
 
@@ -35,12 +42,12 @@ def show_clock():
             print("Alarm set up in {} : {} : 0".format(hour, minute))
 
             if current_time.hour == hour and current_time.minute == minute and current_time.second == 0:
-                print("alarm")
                 play_song()
-
+                print("alarm")
             sleep(0.2)
         # stop
         except KeyboardInterrupt:
             clear()
 
+choose_song()
 show_clock()
