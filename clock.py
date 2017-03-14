@@ -24,7 +24,7 @@ def choose_song():
 
  # loading a song to play
 
-def play_song(path="Traumer - Hoodlum DESOLAT038.mp3"):
+def play_song(path):
 
     mixer.init()
     mixer.music.load(path)
@@ -43,6 +43,8 @@ def play_song(path="Traumer - Hoodlum DESOLAT038.mp3"):
 def pause():
     mixer.pause()
 
+song_choice = choose_song()
+
 def show_clock():
     # we need update our time no
     while True:
@@ -53,12 +55,12 @@ def show_clock():
             print("Alarm set up in {} : {} : 0".format(hour, minute))
 
             if current_time.hour == hour and current_time.minute == minute and current_time.second == 0:
-                play_song()
+                play_song(song_choice)
                 print("alarm")
             sleep(0.2)
         # stop
         except KeyboardInterrupt:
             clear()
 
-choose_song()
+
 show_clock()
