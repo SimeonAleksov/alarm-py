@@ -20,7 +20,7 @@ def choose_song():
         if file.endswith(".mp3"):
             print(file)
     choice = input("Choose song for the alarm: ")
-    return choice
+    return choice + ".mp3"
 
  # loading a song to play
 
@@ -32,16 +32,19 @@ def play_song(path):
 
 # attemp to increase volume
 
-#def increase_volume():
-#    volume = 0.1
-#    mixer.set_volume(volume)
-#    while not volume:
-#        volume += 0.1
-#        sleep(0.5)
-#        mixer.set_volume(volume)
+def increase_volume():
+    mixer.music.set_volume(0.0)
+    volume = [x/10 for x in range(1, 11)]
+    for i in range(len(volume)):
+        mixer.music.set_volume(volume[i])
+        sleep(5)
 
 def pause():
-    mixer.pause()
+    mixer.music.pause()
+
+def stop():
+    mixer.music.stop()
+
 
 song_choice = choose_song()
 
@@ -56,6 +59,7 @@ def show_clock():
 
             if current_time.hour == hour and current_time.minute == minute and current_time.second == 0:
                 play_song(song_choice)
+                increase_volume()
                 print("alarm")
             sleep(0.2)
         # stop
