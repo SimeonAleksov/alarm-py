@@ -4,7 +4,7 @@ from time import sleep
 from os import system, listdir, getcwd
 from datetime import datetime
 from pygame import mixer
-
+from music import Song
 
 def clear():
     system("clear")
@@ -14,39 +14,9 @@ alarm = [int(time) for time in user_input.split() if time.isdigit()]
 
 hour, minute = alarm[0], alarm[1]
 
-def choose_song():
-    current_dir = getcwd()
-    for file in listdir(current_dir):
-        if file.endswith(".mp3"):
-            print(file)
-    choice = input("Choose song for the alarm: ")
-    return choice + ".mp3"
+s = Song()
 
- # loading a song to play
-
-def play_song(path):
-
-    mixer.init()
-    mixer.music.load(path)
-    mixer.music.play()
-
-# attemp to increase volume
-
-def increase_volume():
-    mixer.music.set_volume(0.0)
-    volume = [x/10 for x in range(1, 11)]
-    for i in range(len(volume)):
-        mixer.music.set_volume(volume[i])
-        sleep(5)
-
-def pause():
-    mixer.music.pause()
-
-def stop():
-    mixer.music.stop()
-
-
-song_choice = choose_song()
+song_choice = s.choose_song()
 
 def show_clock():
     # we need update our time no
@@ -58,8 +28,8 @@ def show_clock():
             print("Alarm set up in {} : {} : 0".format(hour, minute))
 
             if current_time.hour == hour and current_time.minute == minute and current_time.second == 0:
-                play_song(song_choice)
-                increase_volume()
+                s.play_song()
+                s.increasing_volume()
                 print("alarm")
             sleep(0.2)
         # stop
