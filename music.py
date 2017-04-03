@@ -4,7 +4,7 @@ from os import listdir, getcwd
 
 
 class Song(object):
-    
+
     def choose_song(self):
         self.currentdir = getcwd()
         for file in listdir(self.currentdir):
@@ -15,6 +15,7 @@ class Song(object):
 
     def play_song(self):
         self.path = self.choice + ".mp3"
+        self.path = "songs/" + self.path
         mixer.init()
         mixer.music.load(self.path)
         mixer.music.set_volume(0.0)
