@@ -1,17 +1,20 @@
 from pygame import mixer
 from time import sleep
 from os import listdir, getcwd
+from speech_test import listen
 
 
 class Song(object):
-
     def choose_song(self):
         self.currentdir = getcwd()
         for file in listdir(self.currentdir):
             if file.endswith(".mp3"):
                 print(file)
-        self.choice = input("Choose song for the alarm: ")
-        # return self.choice + ".mp3"
+
+        self.choice = listen()
+        self.choice = self.choice[:1].upper() + self.choice[1:]
+        return self.choice + ".mp3"
+        
 
     def play_song(self):
         self.path = self.choice + ".mp3"
@@ -25,10 +28,10 @@ class Song(object):
         # mixer.music.set_volume(0.0)
         self.is_max = False
 
-        self.volume = [x/10 for x in range(1, 11)]
+        self.volume = [x / 10 for x in range(1, 11)]
         for i in range(len(self.volume)):
             mixer.music.set_volume(self.volume[i])
-        sleep(5)
+            sleep(5)
 
         if mixer.music.get_volume() == 1.0:
             self.is_max = True
