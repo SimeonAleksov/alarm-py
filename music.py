@@ -1,8 +1,7 @@
 from pygame import mixer
 from time import sleep
 from os import listdir, getcwd
-from speech_test import listen
-
+from voice_recognition import get_song
 
 class Song(object):
     def choose_song(self):
@@ -11,10 +10,9 @@ class Song(object):
             if file.endswith(".mp3"):
                 print(file)
 
-        self.choice = listen()
+        self.choice = get_song()
         self.choice = self.choice[:1].upper() + self.choice[1:]
         return self.choice + ".mp3"
-        
 
     def play_song(self):
         self.path = self.choice + ".mp3"

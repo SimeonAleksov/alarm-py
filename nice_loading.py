@@ -4,18 +4,21 @@ import sys
 import time
 import threading
 
+
 class Loading(object):
     busy = False
     delay = 0.1
-    
+
     @staticmethod
     def loading_cursor():
         while True:
-            for cur in "|/-\\": yield cur
+            for cur in "|/-\\":
+                yield cur
 
     def __init__(self, delay=None):
         self.loading_gen = self.loading_cursor()
-        if delay and float(delay): self.delay = delay
+        if delay and float(delay):
+            self.delay = delay
 
     def load_task(self):
         while self.busy:
@@ -32,5 +35,3 @@ class Loading(object):
     def stop(self):
         self.busy = False
         time.sleep(self.delay)
-            
-
