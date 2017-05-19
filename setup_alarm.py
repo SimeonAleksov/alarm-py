@@ -2,7 +2,8 @@ from voice_recognition import get_hour, get_minute
 from times import clock
 
 def __set_hour():
-    hour = get_hour()
+    hour = "twenty one"
+    print(hour)
     if hour == '':
         hour = 00
         return hour 
@@ -12,7 +13,8 @@ def __set_hour():
         print("Couldn't understand")
 
 def __set_minute():
-    minute = get_minute()
+    minute = input("enter pls")
+    print(minute)
     if minute == '':
         minute = 00
         return minute

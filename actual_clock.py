@@ -39,22 +39,34 @@ class Clock(object):
     
     def show_clock(self):
        """Function to show the time"""
-       
-       hour, minute = self.get_alarm()
+       # self.hour, self.minute = self.get_alarm()
+       self.hours, self.minutes, self.seconds = self.set_time()
        while True:
            try:
-               hours, minutes, seconds = self.set_time()
-               self.clear()
-               print("{} : {} : {}".format(hours, minutes, seconds))
-               print("Alarm set up in {} : {} : 0".format(hour, minute))
-
-               if hour == hours and minute == minutes and seconds == 0:
-                   load.start()
-                   s.play_song()
-                   s.increasing_volume()
-                   load.stop()
-
+               self.hours, self.minutes, self.seconds = self.set_time()
+               # self.clear()
+               print("\r {} : {} : {}             ".format(self.hours, self.minutes, self.seconds), end='')
+               # 
                sleep(0.2)
            except KeyboardInterrupt:
                clear()
 
+    def check_time(self):
+        # print("checking time")
+        self.hour, self.minute = self.get_alarm()
+        print("Alarm set up in {} : {} : 00".format(self.hour, self.minute))
+        # print(self.hour)
+        while True:
+            # print("ehehe")
+            if self.hour == self.hours and self.minute == self.minutes and self.seconds == 0:
+                load.start()
+                s.play_song()
+                s.increasing_volume()
+                load.stop()
+                
+            
+
+
+        
+    
+        

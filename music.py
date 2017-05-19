@@ -9,9 +9,10 @@ class Song(object):
         for file in listdir(self.currentdir):
             if file.endswith(".mp3"):
                 print(file)
-
-        self.choice = get_song()
+        
+        self.choice = "Human"
         self.choice = self.choice[:1].upper() + self.choice[1:]
+        print(self.choice)
         return self.choice + ".mp3"
 
     def play_song(self):
